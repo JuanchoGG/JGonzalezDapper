@@ -123,5 +123,35 @@ namespace CRUDDapper
 
             return resultado;
         }
+
+        public static Resultado GetById(int IdUsuario)
+        {
+            Resultado resultado = new Resultado();
+
+            try
+            {
+                using (SqlConnection context = new SqlConnection(Conexion.GetConnection()))
+                {
+                    var query = context.Query<Usuario>($"UsuarioGetById {IdUsuario}");
+
+                    resultado.Objetos = new List<object>();
+
+                    if (query != null)
+                    {
+                        foreach (var objeto in query)
+                        {
+                            resultado.Objetos.Add(objeto);
+                        }
+                        resultado.Mensaje = "Correcto";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado.Mensaje = "Error: " + ex;
+            }
+
+            return resultado;
+        }
     } 
 }

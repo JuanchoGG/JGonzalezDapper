@@ -15,7 +15,7 @@ namespace CRUDDapper
 
         public static void Menu()
         {
-            Console.WriteLine("Del siguiente menú, selecciona la opcion deseada:\n1) Agregar\n2) Eliminar\n3) Actualizar\n4) Mostrar");
+            Console.WriteLine("Del siguiente menú, selecciona la opcion deseada:\n1) Agregar\n2) Eliminar\n3) Actualizar\n4) Mostrar\n5) Mostrar por ID\nOtra) Salir");
             int opcion = int.Parse(Console.ReadLine());
             switch (opcion)
             {
@@ -30,6 +30,9 @@ namespace CRUDDapper
                     break;
                 case 4:
                     GetAll();
+                    break;
+                case 5:
+                    GetById();
                     break;
             }
         }
@@ -192,6 +195,29 @@ namespace CRUDDapper
             {
                 Menu();
             }
+        }
+
+        public static void GetById()
+        {
+            do
+            {
+                Console.WriteLine("Ingrese el ID del usuario:");
+                int IdUsuario = int.Parse(Console.ReadLine());
+
+                Resultado resultado = Usuario.GetById(IdUsuario);
+
+                if (resultado.Mensaje == "Correcto")
+                {
+                    Console.WriteLine("[IdUsuario]\t[Nombre]\t[ApellidoPaterno]\t[ApellidoMaterno]\t[FechaNacimiento]\t[Sexo]\t[Email]\t[IdRol]\t[Password]\t[UserName]");
+                    foreach (Usuario usuario in resultado.Objetos)
+                    {
+                        Console.WriteLine($"{usuario.IdUsuario}\t{usuario.Nombre}\t{usuario.ApellidoPaterno}\t{usuario.ApellidoMaterno}\t{usuario.FechaNacimiento}\t{usuario.Sexo}\t{usuario.Email}\t{usuario.IdRol}\t{usuario.Password}\t{usuario.UserName}");
+                    }
+                }
+
+                Console.WriteLine("¿Deseas ver otro usuario?\n1) Si\n2) No");
+            } while (int.Parse(Console.ReadLine()) == 1);
+            Menu();
         }
     }
 }
