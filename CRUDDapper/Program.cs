@@ -209,10 +209,8 @@ namespace CRUDDapper
                 if (resultado.Mensaje == "Correcto")
                 {
                     Console.WriteLine("[IdUsuario]\t[Nombre]\t[ApellidoPaterno]\t[ApellidoMaterno]\t[FechaNacimiento]\t[Sexo]\t[Email]\t[IdRol]\t[Password]\t[UserName]");
-                    foreach (Usuario usuario in resultado.Objetos)
-                    {
-                        Console.WriteLine($"{usuario.IdUsuario}\t{usuario.Nombre}\t{usuario.ApellidoPaterno}\t{usuario.ApellidoMaterno}\t{usuario.FechaNacimiento}\t{usuario.Sexo}\t{usuario.Email}\t{usuario.IdRol}\t{usuario.Password}\t{usuario.UserName}");
-                    }
+                    Usuario Usuario = resultado.Usuario;
+                    Console.WriteLine($"{Usuario.IdUsuario}\t{Usuario.Nombre}\t{Usuario.ApellidoPaterno}\t{Usuario.ApellidoMaterno}\t{Usuario.FechaNacimiento}\t{Usuario.Sexo}\t{Usuario.Email}\t{Usuario.IdRol}\t{Usuario.Password}\t{Usuario.UserName}");
                 }
 
                 Console.WriteLine("¿Deseas ver otro usuario?\n1) Si\n2) No");

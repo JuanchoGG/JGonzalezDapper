@@ -134,14 +134,9 @@ namespace CRUDDapper
                 {
                     var query = context.Query<Usuario>($"UsuarioGetById {IdUsuario}");
 
-                    resultado.Objetos = new List<object>();
-
                     if (query != null)
                     {
-                        foreach (var objeto in query)
-                        {
-                            resultado.Objetos.Add(objeto);
-                        }
+                        resultado.Usuario = query.First();
                         resultado.Mensaje = "Correcto";
                     }
                 }
